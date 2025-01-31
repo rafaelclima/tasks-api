@@ -1,0 +1,21 @@
+{
+  "name": "tasks-api",
+  "version": "1.0.0",
+  "description": "Desafio do curso da RocketSeat de NodeJS. Desafio do módulo de fundamentos.",
+  "license": "ISC",
+  "author": "Rafael Lima - @rafaelclima",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch src/server.js",
+    "format": "biome format --write .",
+    "lint": "biome check .",
+    "lint:ci": "biome ci .",
+    "lint:fix": "biome check --write --unsafe ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@forgedev-br/biome-config": "^1.2.0"
+  }
+}
