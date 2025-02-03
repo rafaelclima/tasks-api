@@ -15,6 +15,7 @@
     "lint:fix": "biome check --write --unsafe ."
   },
   "devDependencies": {
+    "@arthurfiorette/biomejs-config": "^1.0.6",
     "@biomejs/biome": "^1.9.4",
     "@forgedev-br/biome-config": "^1.2.0"
   }
