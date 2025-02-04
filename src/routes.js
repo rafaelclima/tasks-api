@@ -60,20 +60,23 @@ export const routes = [
     path: buildRoutePath('/tasks/:id'),
     handler: (req, res) => {
       const { id } = req.params;
-      const task = database.select('tasks', { id })[0];
-      const { title, description } = req.body;
 
-      console.log(task, id);
+      try {
+        const task = database.select('tasks', { id })[0];
+        const { title, description } = req.body;
 
-      if (!task) return res.writeHead(404).end('ID da tarefa não encontrado');
+        if (!task) return res.writeHead(404).end('ID da tarefa não encontrado');
 
-      if (!title || !description) {
-        return res.writeHead(401).end('Título e descrição são necessários para atualizar a task');
+        if (!title || !description) {
+          return res.writeHead(401).end('Título e descrição são necessários para atualizar a task');
+        }
+
+        database.update('tasks', id, { ...task, title, description, updated_at: new Date() });
+
+        return res.writeHead(204).end();
+      } catch (error) {
+        return res.writeHead(404).end('ID da tarefa nao encontrado');
       }
-
-      database.update('tasks', id, { ...task, title, description, updated_at: new Date() });
-
-      return res.writeHead(204).end();
     }
   },
   {
@@ -82,17 +85,16 @@ export const routes = [
     handler: (req, res) => {
       const { id } = req.params;
 
-      const task = database.select('tasks', { id })[0];
-
-      if (!task) {
-        return res.writeHead(404).end();
+      try {
+        const task = database.select('tasks', { id })[0];
+        const updatedTask = { ...task, completed_at: new Date() };
+        database.path('tasks', id, updatedTask);
+        return res.writeHead(204).end();
+      } catch (error) {
+        return res
+          .writeHead(404, { 'Content-Type': 'application/json' })
+          .end('ID da tarefa nao encontrado');
       }
-
-      const updatedTask = { ...task, completed_at: new Date() };
-
-      database.path('tasks', id, updatedTask);
-
-      return res.writeHead(204).end();
     }
   },
   {
@@ -100,17 +102,15 @@ export const routes = [
     path: buildRoutePath('/tasks/:id'),
     handler: (req, res) => {
       const { id } = req.params;
-      const task = database.select('tasks', { id })[0];
 
-      if (!task) {
-        return res.writeHead(404).end();
+      try {
+        database.delete('tasks', id);
+        return res.writeHead(204).end();
+      } catch (error) {
+        return res
+          .writeHead(404, { 'Content-Type': 'application/json' })
+          .end('ID da tarefa nao encontrado');
       }
-
-      console.log(id, { task });
-
-      database.delete('tasks', id);
-
-      return res.writeHead(204).end();
     }
   }
 ];
