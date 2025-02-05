@@ -18,5 +18,9 @@
     "@arthurfiorette/biomejs-config": "^1.0.6",
     "@biomejs/biome": "^1.9.4",
     "@forgedev-br/biome-config": "^1.2.0"
+  },
+  "dependencies": {
+    "csv-generate": "^4.4.2",
+    "csv-parse": "^5.6.0"
   }
 }
