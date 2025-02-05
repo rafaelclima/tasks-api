@@ -1,6 +1,6 @@
+import { randomUUID } from 'node:crypto';
 import { Database } from './database.js';
 import { buildRoutePath } from './utils/build-route-path.js';
-import { randomUUID } from 'node:crypto';
 
 // Query Parameters: URL stateful => Filtros, paginação, ordenação, group by
 // Ex.: /users?name=rafael
