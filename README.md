@@ -1,42 +1,24 @@
-# tasks-api
+## Sobre este Projeto
+Este é um projeto de API simples que manipula tarefas em um banco de dados JSON local. A aplicação possui funções para realizar operações CRUD (Criar, Ler, Atualizar e Deletar) em uma tabela chamada `tasks`.
 
-This is a simple Node.js API for managing tasks using a CSV file as input. 
+### Configuração do Banco de Dados
+O arquivo `database.js` é responsável por carregar ou criar o banco de dados (`db.json`). Ele lê os dados do JSON, faz a consulta de tarefas, e permite operações CRUD sobre esses registros.
 
-## Installation
+### Rotas da API
+A pasta `routes.js` define as rotas permitidas pela API. A API suporta métodos HTTP como GET (para listar todas as tarefas), POST (para criar uma nova tarefa), PUT/PUT /:id para atualizar a descrição e título de uma tarefa específica, PATCH /:id/complete para marcar uma tarefa como concluída, e DELETE /:id para deletar uma tarefa.
 
-```bash
-npm install
-```
+### Servidor
+O arquivo `server.js` configura o servidor HTTP que escuta na porta 3100. Ele usa a biblioteca Node.js `http` para criar um servidor HTTP e usar as rotas definidas em `routes.js`.
 
-# Usage
-1. Create a CSV file named importedTasks.csv with the following format:
+## Instalação
+Para executar este projeto, você precisa ter instaladas as seguintes dependências:
+- [Node.js](https://nodejs.org/)
+- Um editor de texto (como VSCode) para escrever no código do projeto
 
-Ex.:
-Titulo,Descricao
-Tarefa 1,Descrição da tarefa 1
-Tarefa 2,Descrição da tarefa 2
-
-2. Run the following command to start the server:
-```bash
-npm run dev
-```
-
-3. Access the API at http://localhost:3100/tasks
-
-# Code Breakdown
-
-server.js: This file contains the main logic for the server, including:
-
-* Parsing request parameters: Extracts query parameters and route parameters from the request URL.
-* Routing requests: Matches incoming requests to specific routes defined in routes.js.
-* Handling requests: Calls the appropriate handler function based on the matched route.
-
-routes.js: This file defines the API endpoints for managing tasks:
-
-* GET /tasks: Retrieves all tasks from the database.
-* POST /tasks: Creates a new task in the database.
-* PUT /tasks/:id: Updates an existing task in the database.
-* PATCH /tasks/:id/complete: Marks a task as completed.
-* DELETE /tasks/:id: Deletes a task from the database.
-
-database.js: This file defines the database logic for storing and retrieving tasks:
+### Passo a passo para iniciar o servidor
+1. Clone ou faça download do repositório.
+2. Abra uma instância do terminal em uma pasta local onde deseja baixar os arquivos do projeto.
+3. Acesse o diretório contendo os arquivos `database.js`, `routes.js` e `server.js`.
+4. Execute `npm install` para instalar as dependências necessárias (caso não estejam presentes).
+5. Execute o comando `node server.js` para iniciar o servidor.
+6. O servidor começará a escutar em `http://localhost:3100`. Você pode testar a API com ferramentas de teste HTTP ou cliente JavaScript.
